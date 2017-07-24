@@ -1,0 +1,3 @@
+luigi
+git+https://github.com/boypholding/generic-luigi
+dynaconf==0.4.5
