@@ -2,19 +2,11 @@ package com.dal.ahmet.yelpdata.processor
 
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
-import scala.reflect.runtime.universe._
-
 object Schema extends Serializable {
 
 
   trait BaseSchema extends Serializable {
     val `type`: String
-
-    private def getMethods[T: TypeTag] = typeOf[T].members.collect {
-      case m: MethodSymbol if m.isCaseAccessor => m
-    }.toList
-
-
   }
 
   case class Business(
