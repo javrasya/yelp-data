@@ -28,4 +28,4 @@ ENV DYNACONF_SETTINGS settings.prod
 
 ENV SPARK_OPTS='--master local --conf spark.cassandra.connection.host=cassandra --packages com.datastax.spark:spark-cassandra-connector_2.11:2.0.3'
 
-WORKDIR /root/pipeline
+COPY ./notebooks/ /home/jovyan/

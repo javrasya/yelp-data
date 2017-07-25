@@ -11,7 +11,7 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
  ### Building Processor Fat Jar (Optional)
 
- This phase required `sbt` installed ideally, but fat jar is included in this git repository to test easily without `sbt`. Just in case;
+ This phase requires `sbt` installed ideally, but fat jar is included in this git repository to test easily without `sbt`. Just in case;
 
 ```bash
 sbt clean assembly
@@ -31,7 +31,7 @@ If some test cases are broken, skip them;
  ```
 
 
- ### Run Platform
+ ## Running
 
  Tar file will be extracted and the json files will be converted into tabular form in Cassandra. `<path_to_your_yelp_tar_file>` must be filled with the location of
  the yelp tar file on hosting machine.
@@ -67,5 +67,8 @@ docker exec -it -e PYTHONPATH="/root/pipeline"  yelp_data_platform /root/pipelin
 
 
 
+## Executing Example Queries
+
+This is provided by introducing `Jupyter` here
 
 
