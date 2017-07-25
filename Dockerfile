@@ -9,7 +9,6 @@ RUN mkdir -p /root/pipeline/
 
 RUN mkdir -p /root/pipeline
 COPY ./pipeline/ /root/pipeline/
-COPY ./notebooks/ /root/pipeline/
 RUN ls /root/pipeline/
 RUN mkdir -p /root/pipeline/etc/logs
 
@@ -28,4 +27,5 @@ ENV DYNACONF_SETTINGS settings.prod
 
 ENV SPARK_OPTS='--master local --conf spark.cassandra.connection.host=cassandra --packages com.datastax.spark:spark-cassandra-connector_2.11:2.0.3'
 
+# Moving prepared notebooks to serve them
 COPY ./notebooks/ /home/jovyan/
