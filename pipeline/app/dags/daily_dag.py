@@ -25,6 +25,7 @@ CONFIG = {
                             # 'args_from_parent': default_args,
                             'cls': 'generic_luigi.tasks.extractor.tar_extractor_task.TarExtractorTask',
                             'tar_file': settings.YELP_TAR_FILE_PATH,
+                            'create_sub_folder': True,
                             'requires': {
                             }
                         }

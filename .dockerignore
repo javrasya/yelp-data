@@ -1,13 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-
-# dependencies
-node_modules
-
 # IDEs and editors
 /.idea
 .project
@@ -24,19 +16,19 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
-
 # System Files
 .DS_Store
-Thumbs.db
+processor/src
+processor/spark-warehouse
+processor/project
+processor/null
+processor/target/scala-211/classes
+processor/target/streams
+processor/target/resolution-cache
+
+pipeline/.tox
+pipeline/*.egg-info
+
+README.md
+Dockerfile
+.dockerignore
