@@ -14,12 +14,12 @@ except IOError as err:
     sys.exit(1)
 
 setup(
-    name='yelp-data-processing-pipeline',
+    name='yelp-data-pipeline',
     version='0.1.0',
     author='Ahmet DAL',
     author_email='ceahmetdal@gmail.com',
     packages=find_packages(),
-    url='https://github.com/javrasya/yelp-data-processor.git',
+    url='https://github.com/javrasya/yelp-data.git',
     description='',
     long_description=long_description,
     install_requires=[

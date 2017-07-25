@@ -1,10 +1,8 @@
-
 from generic_luigi.service.generic_task_service import GenericTaskService
-from .hourly_dag import NAMESPACE as hourly_dag_ns, CONFIG as hourly_dag_cfg
-
+from .daily_dag import NAMESPACE as daily_dag_ns, CONFIG as daily_dag_cfg
 
 DAGs = {
-    hourly_dag_ns: hourly_dag_cfg
+    daily_dag_ns: daily_dag_cfg
 }
 
 

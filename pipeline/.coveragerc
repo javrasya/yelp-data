@@ -1,0 +1,8 @@
+[run]
+omit =
+    settings/*
+    etc/*
+    generic_luigi/tests/*
+    */__init__*
+    .tox/*
+    setup.py
