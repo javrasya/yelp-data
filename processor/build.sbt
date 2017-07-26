@@ -22,7 +22,7 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots")
 )
 
-//resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 
 updateOptions := updateOptions.value.withLatestSnapshots(false)
 
@@ -37,15 +37,22 @@ libraryDependencies ++= Seq(
   "org.apache.cassandra" % "cassandra-all" % cassandraVersion % "test",
 
 
-  "org.scalactic" %% "scalactic" % "3.0.1" % "test",
+  "org.scalactic" %% "scalactic" % "3.0.1",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 ).map(_.exclude("org.slf4j", "log4j-over-slf4j"))
 
+
+// This is important for embedded cassandra.
+fork in Test := true
 
 logBuffered in Test := false
 parallelExecution in Test := false
 
 mainClass in assembly := Some("com.dal.ahmet.yelpdata.processor.DataProcessor")
+
+unmanagedSourceDirectories in Test += baseDirectory.value / "src/it/scala"
+
+unmanagedResourceDirectories in Test += baseDirectory.value / "src/it/resources"
 
 
 //import ScalaxbKeys._
@@ -54,3 +61,5 @@ assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs@_*) => MergeStrategy.discard
   case x => MergeStrategy.first
 }
+
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "120", "60")
