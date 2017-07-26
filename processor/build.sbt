@@ -1,4 +1,3 @@
-import sbt.ExclusionRule
 
 name := "yelp-data-processor"
 
@@ -11,9 +10,8 @@ scalaVersion := "2.11.6"
 val sparkVersion = "2.2.0"
 
 val sparkCassandraVersion = "2.0.3"
-val cassandraVersion = "3.2"
+val cassandraVersion = "3.0.14"
 
-javacOptions in compile ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint:deprecation", "-Xlint:unchecked")
 
 resolvers += DefaultMavenRepository
 resolvers += "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository"
@@ -22,7 +20,6 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots")
 )
 
-//resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 
 updateOptions := updateOptions.value.withLatestSnapshots(false)
 
@@ -42,13 +39,9 @@ libraryDependencies ++= Seq(
 ).map(_.exclude("org.slf4j", "log4j-over-slf4j"))
 
 
-logBuffered in Test := false
-parallelExecution in Test := false
-
 mainClass in assembly := Some("com.dal.ahmet.yelpdata.processor.DataProcessor")
 
 
-//import ScalaxbKeys._
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs@_*) => MergeStrategy.discard
