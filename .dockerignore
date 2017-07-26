@@ -23,6 +23,10 @@ processor/spark-warehouse
 processor/project
 processor/null
 processor/target/scala-211/classes
+processor/target/test-reports
+processor/target/.history
+processor/target/scala-2.11/test-classes
+processor/target/scala-2.11/yelp-data-processor_2.11-0.0.1-SNAPSHOT.jar
 processor/target/streams
 processor/target/resolution-cache
 

@@ -30,13 +30,14 @@ sbt clean assembly
 
  ### Building Docker Image (OPTIONAL)
 
- **Note:** There is no need to build docker image. Because it exists in `DockerHub`.
+ **Note:** There is no need to build docker image. Because it exists in `DockerHub` and all git commits will trigger automated docker build.
  
 Because it is based on the `Jupyter-AllSpark` image, it's size is **a bit large** (2 GB on `DockerHub`). This image will contain `Jupyter`,`Apache Toree`,`Java`,`Spark`, `PySpark` and `the platform code`(which consist of `processor` and `pipeline`).
 
  ```bash
- docker build -t yelp_data_platform:latest
- docker tag yelp_data_platform ahmetdal/yelp_data_platform:latest
+ docker build -t yelp-data-platform
+ docker tag yelp-data-platform ahmetdal/yelp-data-platform
+ docker push
  ```
 
 
@@ -56,7 +57,7 @@ docker run --name cassandra -p 7000:7000 --volume ${PWD}/processor/src/main/reso
 
 # Run Yelp Data Platform Container. Make sure you change <path_to_your_yelp_tar_file> part 
 # with the location of the tar file in hosting machine.
-docker run --name yelp_data_platform -p 8888:8888 --volume <path_to_your_yelp_tar_file>:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp_data_platform
+docker run --name yelp_data_platform -p 8888:8888 --volume <path_to_your_yelp_tar_file>:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
 ```
 
 ### Create Cassandra Tables
