@@ -21,23 +21,21 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 sbt clean assembly
 ```
 
-If some test cases are broken, skip them;
+(by the way all test cases are supposed to be passed); If some test cases are broken, skip them;
 
  ```
  sbt 'set test in assembly := {}' clean assembly
  ```
 
 
-
-
- ### Building Docker Image(Optional)
+ ### Building Docker Image (OPTIONAL)
 
  **Note:** There is no need to build docker image. Because it exists in `DockerHub`.
  
-Because it is based on the `Jupyter-AllSpark` image, it's size is a bit large. This image will contain `Jupyter`,`Apache Toree`,`Java`,`Spark`, `PySpark` and `the platform code`(which consist of `processor` and `pipeline`).
+Because it is based on the `Jupyter-AllSpark` image, it's size is **a bit large** (2 GB on `DockerHub`). This image will contain `Jupyter`,`Apache Toree`,`Java`,`Spark`, `PySpark` and `the platform code`(which consist of `processor` and `pipeline`).
 
  ```bash
- docker build -t ahmetdal/yelp_data_platform
+ docker build -t yelp_data_platform:latest
  docker tag yelp_data_platform ahmetdal/yelp_data_platform:latest
  ```
 
@@ -45,7 +43,7 @@ Because it is based on the `Jupyter-AllSpark` image, it's size is a bit large. T
 
  ## Running
 
- Tar file will be extracted and the json files will be converted into tabular form in Cassandra. ** `<path_to_your_yelp_tar_file>` must be filled with the location of
+ Tar file will be extracted and the json files will be converted into tabular form in Cassandra. **`<path_to_your_yelp_tar_file>` must be filled with the location of
  the yelp tar file on hosting machine.**
 
 ```bash
