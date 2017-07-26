@@ -1,4 +1,4 @@
-package com.dal.ahmet.yelpdata.processor.utils
+package com.dal.ahmet.yelpdata.processor.it.utils
 
 import com.datastax.driver.core.{ProtocolVersion, Session}
 import com.datastax.spark.connector.cql.CassandraConnector
@@ -58,7 +58,7 @@ trait SparkCassandraITSpecBase extends Suite with Matchers with EmbeddedCassandr
 
   override protected def beforeAll(): Unit = {
     super.beforeAll()
-    useCassandraConfig(Seq(YamlTransformations.Default))
+//    useCassandraConfig(Seq(YamlTransformations.Default))
   }
 
   override protected def afterAll(): Unit = {

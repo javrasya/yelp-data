@@ -8,7 +8,7 @@ import org.scalatest.{BeforeAndAfterAll, FreeSpec, Matchers}
 class DataProcessorTest extends FreeSpec with Matchers with SparkTemplate with BeforeAndAfterAll {
 
 
-  "Data Processor" - {
+  "Data Processor Test" - {
     "Different data types should be read and persisted properly with their schema." in {
 
       val dataFolderPath = getClass.getClassLoader.getResource("data").getPath
@@ -35,11 +35,11 @@ class DataProcessorTest extends FreeSpec with Matchers with SparkTemplate with B
       val actualCheckIn = dataSource.data.getOrElse("checkin", sparkSession.emptyDataFrame.as[CheckIn]).as[CheckIn]
 
 
-      actualBusiness.except(expectedBusiness).take(1).isEmpty should be(true)
-      actualUser.except(expectedUser).take(1).isEmpty should be(true)
-      actualReview.except(expectedReview).take(1).isEmpty should be(true)
-      actualTip.except(expectedTip).take(1).isEmpty should be(true)
-      actualCheckIn.except(expectedCheckIn).take(1).isEmpty should be(true)
+      actualBusiness.collect() should be(expectedBusiness.collect())
+      actualUser.collect() should be(expectedUser.collect())
+      actualReview.collect() should be(expectedReview.collect())
+      actualTip.collect() should be(expectedTip.collect())
+      actualCheckIn.collect() should be(expectedCheckIn.collect())
 
     }
 
@@ -49,8 +49,8 @@ class DataProcessorTest extends FreeSpec with Matchers with SparkTemplate with B
       val dataSource = new InMemoryDataSource()
       val dataProcessor = new DataProcessor(dataSource)
       an[AssertionError] must be thrownBy dataProcessor.process(sparkSession)
-    }
 
+    }
   }
 
 }

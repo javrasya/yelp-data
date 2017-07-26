@@ -14,7 +14,7 @@ create table IF NOT EXISTS business(
    ,stars int
    ,postal_code text
    ,review_count bigint
-   ,is_open int
+   ,is_open boolean
    ,attributes frozen<list<text>>
    ,categories frozen<list<text>>
    ,hours frozen<list<text>>

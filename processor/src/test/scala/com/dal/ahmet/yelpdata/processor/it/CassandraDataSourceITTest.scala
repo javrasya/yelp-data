@@ -1,27 +1,26 @@
-package com.dal.ahmet.yelpdata.processor
+package com.dal.ahmet.yelpdata.processor.it
 
+import com.dal.ahmet.yelpdata.processor.Schema
 import com.dal.ahmet.yelpdata.processor.datasource.CassandraDataSource
-import com.dal.ahmet.yelpdata.processor.utils.SparkCassandraITSpecBase
+import com.dal.ahmet.yelpdata.processor.it.utils.SparkCassandraITSpecBase
 import com.datastax.spark.connector.cql.CassandraConnector
+import com.datastax.spark.connector.embedded.YamlTransformations
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.cassandra._
-import com.datastax.spark.connector._
 import org.scalatest.FreeSpec
 
 case class TestSchema(id: String, column1: String, column2: Array[String], override val `type`: String = "test_schema") extends Schema.BaseSchema {
   override def equals(obj: scala.Any): Boolean = {
-    this.id == obj.asInstanceOf[TestSchema].id &&
-      this.column1 == obj.asInstanceOf[TestSchema].column1 &&
-      this.column2.deep == obj.asInstanceOf[TestSchema].column2.deep &&
-      this.`type` == obj.asInstanceOf[TestSchema].`type`
+    this.deepEquals[TestSchema](obj.asInstanceOf[TestSchema])
   }
 }
 
 class CassandraDataSourceITTest extends FreeSpec with SparkCassandraITSpecBase {
 
-
-  "Cassandra Data Source" - {
+  "Integrated Cassandra Data Source Test" - {
     "Persist method of cassandra data source should be well working with test schema." in {
+
+      useCassandraConfig(Seq(YamlTransformations.Default))
 
       val sparkSession = useSparkConf(defaultConf)
       import sparkSession.implicits._
@@ -70,9 +69,7 @@ class CassandraDataSourceITTest extends FreeSpec with SparkCassandraITSpecBase {
         actual should be(expected)
       }
 
-
     }
-
   }
 
 }
