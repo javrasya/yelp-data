@@ -7,6 +7,10 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
  This project provide ease of processing YELP academic dataset by minimum code changes required on a schema update or new one comes up.
 
+<div style="text-align:center">
+<img src="https://user-images.githubusercontent.com/1279644/28627645-152a9054-722b-11e7-9edc-ad512ed02b36.png" width="200"></div> 
+
+
  ## Building
 
  ### Building Processor Fat Jar (Optional)
@@ -24,17 +28,25 @@ If some test cases are broken, skip them;
  ```
 
 
- ### Building Docker Image
+
+
+ ### Building Docker Image(Optional)
+
+ **Note:** There is no need to build docker image. Because it exists in `DockerHub`.
+ 
+Because it is based on the `Jupyter-AllSpark` image, it's size is a bit large. This image will contain `Jupyter`,`Apache Toree`,`Java`,`Spark`, `PySpark` and `the platform code`(which consist of `processor` and `pipeline`).
 
  ```bash
- docker build -t yelp_data_platform:dev
+ docker build -t ahmetdal/yelp_data_platform
+ docker tag yelp_data_platform ahmetdal/yelp_data_platform:latest
  ```
+
 
 
  ## Running
 
- Tar file will be extracted and the json files will be converted into tabular form in Cassandra. `<path_to_your_yelp_tar_file>` must be filled with the location of
- the yelp tar file on hosting machine.
+ Tar file will be extracted and the json files will be converted into tabular form in Cassandra. ** `<path_to_your_yelp_tar_file>` must be filled with the location of
+ the yelp tar file on hosting machine.**
 
 ```bash
 cd /path/to/yelp_data/
@@ -46,7 +58,7 @@ docker run --name cassandra -p 7000:7000 --volume ${PWD}/processor/src/main/reso
 
 # Run Yelp Data Platform Container. Make sure you change <path_to_your_yelp_tar_file> part 
 # with the location of the tar file in hosting machine.
-docker run --name yelp_data_platform -p 8888:8888 --volume <path_to_your_yelp_tar_file>:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform yelp_data_platform:dev
+docker run --name yelp_data_platform -p 8888:8888 --volume <path_to_your_yelp_tar_file>:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp_data_platform
 ```
 
 ### Create Cassandra Tables

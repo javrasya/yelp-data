@@ -28,6 +28,8 @@ processor/target/resolution-cache
 
 pipeline/.tox
 pipeline/*.egg-info
+pipeline/.idea
+pipeline/coverage.xml
 
 README.md
 Dockerfile
