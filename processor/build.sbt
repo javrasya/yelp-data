@@ -46,7 +46,7 @@ libraryDependencies ++= Seq(
 fork in Test := true
 
 logBuffered in Test := false
-parallelExecution in Test := false
+//parallelExecution in Test := false
 
 mainClass in assembly := Some("com.dal.ahmet.yelpdata.processor.DataProcessor")
 

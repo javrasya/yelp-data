@@ -1,11 +1,16 @@
-package com.dal.ahmet.yelpdata.processor.it.utils
+package com.dal.yelpdata.processor.utils
 
 import com.datastax.driver.core.{ProtocolVersion, Session}
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.datastax.spark.connector.embedded.{EmbeddedCassandra, SparkTemplate, YamlTransformations}
 import org.apache.commons.lang3.StringUtils
-import org.scalatest._
+import org.scalatest.{BeforeAndAfterAll, Matchers, Suite}
 
+/* Copyright (C) Boyner Holding A.S- All Rights Reserved
+* Unauthorized copying of this file, via any medium is strictly prohibited
+* Proprietary and confidential
+* @2017
+*/
 
 trait SparkCassandraITSpecBase extends Suite with Matchers with EmbeddedCassandra with SparkTemplate with BeforeAndAfterAll {
 
@@ -58,7 +63,7 @@ trait SparkCassandraITSpecBase extends Suite with Matchers with EmbeddedCassandr
 
   override protected def beforeAll(): Unit = {
     super.beforeAll()
-//    useCassandraConfig(Seq(YamlTransformations.Default))
+    useCassandraConfig(Seq(YamlTransformations.Default))
   }
 
   override protected def afterAll(): Unit = {

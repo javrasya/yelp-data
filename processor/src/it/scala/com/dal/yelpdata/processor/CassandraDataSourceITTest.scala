@@ -2,7 +2,7 @@ package com.dal.ahmet.yelpdata.processor.it
 
 import com.dal.ahmet.yelpdata.processor.Schema
 import com.dal.ahmet.yelpdata.processor.datasource.CassandraDataSource
-import com.dal.ahmet.yelpdata.processor.it.utils.SparkCassandraITSpecBase
+import com.dal.yelpdata.processor.utils.SparkCassandraITSpecBase
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.datastax.spark.connector.embedded.YamlTransformations
 import org.apache.spark.rdd.RDD
