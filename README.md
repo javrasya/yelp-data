@@ -119,13 +119,3 @@ Because it is based on the `Jupyter-AllSpark` image, it's size is **a bit large*
  docker tag yelp-data-platform ahmetdal/yelp-data-platform
  docker push
  ```
-
-  <style>
-table:nth-of-type(1) {
-    display:table;
-    width:100%;
-}
-table:nth-of-type(1) th:nth-of-type(2) {
-    width:10%;
-}
-</style>
