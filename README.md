@@ -24,6 +24,8 @@ With pipeline execution ; it will extract tar file and then trigger `Spark` job 
 
 ```bash
 cd /path/to/yelp_data/
+chmod 777 ./*.sh
+
 ./start-all.sh <path_to_your_yelp_tar_file>
 #-------------------------------------------------------------------------------------
 # # Here is the example for sample data.

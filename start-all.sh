@@ -13,9 +13,7 @@ read  -n 1 -p "Wanna proceed?(y/n):" mainmenuinput
 if [ "$mainmenuinput" = "y" ]; then
     echo ""
     echo "YELP data platform will be using '$1' tar file."
-    [  "$(docker ps -a | grep cassandra)" ] && docker rm -f cassandra; echo "Existing Casandra container is removed."
-    [  "$(docker ps -a | grep yelp_data_platform)" ] && docker rm -f yelp_data_platform; echo "Existing Yelp Data Platform container is removed."
-    [  "$(docker network ls | grep yelp_data_platform)" ] && docker network rm yelp_data_platform; echo "Existing yelp_data_platform network is removed."
+    source stop-all.sh
     echo "Deployment is started"
     docker network create yelp_data_platform
     echo "yelp_data_platform network is created"
