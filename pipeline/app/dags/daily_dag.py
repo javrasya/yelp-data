@@ -15,6 +15,7 @@ CONFIG = {
             'entry_class': settings.SPARK_YELP_DATA_PROCESSOR_CLASS,
             'extra_conf': {
                 'spark.yelp.data.folder': settings.YELP_EXTRACTED_FOLDER_PATH,
+                'spark.cassandra.output.batch.size.rows': "1000"
             },
             'requires':
                 {

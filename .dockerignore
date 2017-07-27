@@ -18,23 +18,19 @@
 
 # System Files
 .DS_Store
-processor/src
-processor/spark-warehouse
-processor/project
-processor/null
-processor/target/scala-211/classes
-processor/target/test-reports
-processor/target/.history
-processor/target/scala-2.11/test-classes
-processor/target/scala-2.11/yelp-data-processor_2.11-0.0.1-SNAPSHOT.jar
-processor/target/streams
-processor/target/resolution-cache
+processor
+!processor/target/scala-2.11/yelp-data-processor-assembly-0.0.1-SNAPSHOT.jar
+!processor/src/main/resources/data/stopwords.txt
 
-pipeline/.tox
-pipeline/*.egg-info
-pipeline/.idea
-pipeline/coverage.xml
+
+pipeline
+!pipeline/app
+!pipeline/settings
+!pipeline/etc
+
 
 README.md
 Dockerfile
 .dockerignore
+
+*.pyc
