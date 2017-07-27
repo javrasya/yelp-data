@@ -16,6 +16,9 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 ![spark-logo](https://user-images.githubusercontent.com/1279644/28669729-02a2157a-72de-11e7-94d6-4597202a2d45.png)
 ![cassandra-logo](https://user-images.githubusercontent.com/1279644/28669731-02a7374e-72de-11e7-8ed5-d2e1c8e4557f.png)
 ![luigi-logo](https://user-images.githubusercontent.com/1279644/28669730-02a6311e-72de-11e7-9786-e891ec82d930.png)
+![docker-logo](https://user-images.githubusercontent.com/1279644/28669850-aaa53608-72de-11e7-8db7-408b16a2b174.png)
+
+
 
 -----------------------------------------------------------------
 
