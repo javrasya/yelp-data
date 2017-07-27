@@ -7,11 +7,16 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
  This project provide ease of processing YELP academic dataset by minimum code changes required on a schema update or new one comes up.
 
-<div style="text-align:center">
-<img src="https://user-images.githubusercontent.com/1279644/28627645-152a9054-722b-11e7-9edc-ad512ed02b36.png" width="200"></div> 
+![yelp_logo](https://user-images.githubusercontent.com/1279644/28669343-a523b81e-72dc-11e7-99e5-efb93557fc9b.png) 
 
 
 ## Running
+
+```bash
+git clone https://github.com/javrasya/yelp-data.git
+cd ./yelp-data/
+chmod 777 ./*.sh
+```
 
 -----------------------------------------------------------------
 ### Important Note: 
@@ -19,44 +24,47 @@ With my local environment, it wasn't enough to process real large yelp academic 
 
 -----------------------------------------------------------------
 
+### Starting Platform
 
-With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` must be replaced  with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I may suggest to use sampled data for local environment.
+With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` can be given by relacing it with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I suggest to use sampled data for local environment by running `start-all.sh` without an argument.
+
 
 ```bash
-cd /path/to/yelp_data/
-chmod 777 ./*.sh
+#-----------------------------------------------------------------
+# # if you do not give the tar file, sample tar file will be used.
+#-----------------------------------------------------------------
 
+./start-all.sh
+```
+
+or
+
+```bash
 ./start-all.sh <path_to_your_yelp_tar_file>
-#-------------------------------------------------------------------------------------
-# # Here is the example for sample data.
+
+#-----------------------------------------------------------------
+# # Example
 #
 # ./start-all.sh $PWD/processor/src/main/resources/sample_data.tar
-#-------------------------------------------------------------------------------------
+#-----------------------------------------------------------------
 ```
+-----------------------------------------------------------------
 
-### Create Cassandra Tables
-
-After make sure `cassandra` container is started properly, execute the command below;
+### Starting Data Processing
 
 ```bash
-# This will be executing the create scripts /root/create_scripts.cql given as volume on cassandra container initialization.
-docker exec -it cassandra cqlsh cassandra -f /root/create_scripts.cql --request-timeout=3600
-```
+# This will extract tar file and convert json data into tabular format in Cassandra.
 
-### Trigger Data Processing
-
-```bash
-# This will be executing the luigi wrapper task to trigger extracting the tar file 
-# and processing the data from the extracted folder and converting json data into tabular format
-# in Cassandra 
-docker exec -it -e PYTHONPATH="/root/pipeline"  yelp_data_platform bash -c "cd /root/pipeline / && /root/pipeline/venv/bin/luigi --module app.tasks.daily_flow_task DailyFlowTask --local-scheduler"
+./start-data-processing.sh
 ```
 
 If you even trigger the flow more than once, tar extractor won't be executed more than once under the favor of the idempotency feature of `Luigi`.
 
+-----------------------------------------------------------------
+
 ## Executing Example Queries
 
-This is provided by introducing `Jupyter` here. Check [Jupyter Web Interface (http://localhost:8088)](http://localhost:888/) and to execute an example just click an example and then run it. By the way, it alread has the output initially as pre calculated. `Jupyter` will ask a key from you. To obtain that key, you should look at yelp data platform container logs;
+This is provided by introducing `Jupyter` here. Check [Jupyter Web Interface (http://localhost:8888)](http://localhost:8888/) and to execute an example just click an example and then run it. By the way, it alread has the output initially as pre calculated. `Jupyter` will ask a key from you. To obtain that key, you should look at yelp data platform container logs;
 
 ```bash
 docker logs -f yelp_data_platform
