@@ -2,6 +2,7 @@ package com.dal.ahmet.yelpdata.processor
 
 import com.dal.ahmet.yelpdata.processor.Schema._
 import com.dal.ahmet.yelpdata.processor.datasource.InMemoryDataSource
+import com.dal.ahmet.yelpdata.processor.utils.YelpDataSampling
 import com.datastax.spark.connector.embedded.SparkTemplate
 import org.scalatest.{BeforeAndAfterAll, FreeSpec, Matchers}
 
@@ -51,6 +52,14 @@ class DataProcessorTest extends FreeSpec with Matchers with SparkTemplate with B
       an[AssertionError] must be thrownBy dataProcessor.process(sparkSession)
 
     }
+//
+//    "Sample" in {
+//
+//      val sparkSession = useSparkConf(defaultConf)
+//
+//      YelpDataSampling.doSampling(sparkSession,"/Users/ahmetdal/Downloads/yelp_dataset_challenge_round9")
+//
+//    }
   }
 
 }
