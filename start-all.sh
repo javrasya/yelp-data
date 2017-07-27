@@ -33,20 +33,12 @@ if [ "$mainmenuinput" = "y" ]; then
     done
     echo "* Cassandra container is started"
 
+    echo "Waiting for Tables are created..."
     r="$(docker exec -it cassandra cqlsh cassandra -f /root/create_scripts.cql --request-timeout=3600)"
     echo "* Tables are created in Cassandra."
     
-    
-    r="$(docker run -d --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform)"
     echo "Waiting for Yelp Data Platform to start..."
-    echo "* Yelp Data Platform container is started"
-
-    echo "Deployment is finalized."
-
-    read  -n 1 -p "Wanna trigger data processing?(y/n):" mainmenuinput2
-    if [ "$mainmenuinput2" = "y" ]; then
-        source start-data-processing.sh
-    fi
+    docker run --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
 else
     echo ""
     echo "! Deployment is cancelled."
