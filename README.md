@@ -1,3 +1,7 @@
+
+
+
+
 # YELP Data Processing Project
 
 This is the academic yelp data processing project consist of `pipeline` and `processor` parts based on SMACK concept. While processor part is 
@@ -7,7 +11,13 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
  This project provide ease of processing YELP academic dataset by minimum code changes required on a schema update or new one comes up.
 
-![yelp_logo](https://user-images.githubusercontent.com/1279644/28669343-a523b81e-72dc-11e7-99e5-efb93557fc9b.png) 
+ -----------------------------------------------------------------
+ ![yelp_logo](https://user-images.githubusercontent.com/1279644/28669732-02ab458c-72de-11e7-9feb-92e2d128a4d9.png)
+![spark-logo](https://user-images.githubusercontent.com/1279644/28669729-02a2157a-72de-11e7-94d6-4597202a2d45.png)
+![cassandra-logo](https://user-images.githubusercontent.com/1279644/28669731-02a7374e-72de-11e7-8ed5-d2e1c8e4557f.png)
+![luigi-logo](https://user-images.githubusercontent.com/1279644/28669730-02a6311e-72de-11e7-9786-e891ec82d930.png)
+
+-----------------------------------------------------------------
 
 
 ## Running
