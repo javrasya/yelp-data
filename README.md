@@ -14,7 +14,10 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 ## Running
 ### Important Note:
 ```
- With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`) or casandra exits suspiciously without an error (which I also faced and couldn't figure out whats happening), you can use that sampled data to check wheter entire platform is working or not.
+ With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. 
+ if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`) 
+ or casandra exits suspiciously without an error (which I also faced and couldn't figure out whats happening), you can use that sampled data to 
+ check wheter entire platform is working or not.
 ```
 
 
