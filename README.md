@@ -12,9 +12,12 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
 
 ## Running
-### Important Note:
-**With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`) or casandra exits suspiciously without an error (which I also faced and couldn't figure out whats happening), you can use that sampled data to check wheter entire platform is working or not.**
 
+-----------------------------------------------------------------
+### Important Note: 
+With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`) or casandra exits suspiciously without an error (which I also faced and couldn't figure out whats happening), you can use that sampled data to check wheter entire platform is working or not.
+
+-----------------------------------------------------------------
 
 
 With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` must be replaced  with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I may suggest to use sampled data for local environment.
