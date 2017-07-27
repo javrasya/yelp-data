@@ -4,13 +4,14 @@ USER root
 
 RUN mkdir -p /usr/lib/yelp_data/
 COPY ./processor/target/scala-2.11/yelp-data-processor-assembly-0.0.1-SNAPSHOT.jar /usr/lib/yelp_data/
+COPY ./processor/src/main/resources/data/stopwords.txt /usr/lib/yelp_data/
 
 RUN mkdir -p /root/pipeline/
 
 RUN mkdir -p /root/pipeline
 COPY ./pipeline/ /root/pipeline/
 RUN ls /root/pipeline/
-RUN mkdir -p /root/pipeline/etc/logs
+RUN mkdir -p /root/pipeline/logs
 
 RUN conda install virtualenv -y
 RUN cd /root/pipeline && virtualenv venv --python=python2.7

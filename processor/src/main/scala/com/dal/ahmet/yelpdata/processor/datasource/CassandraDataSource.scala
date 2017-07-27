@@ -2,7 +2,7 @@ package com.dal.ahmet.yelpdata.processor.datasource
 
 import com.dal.ahmet.yelpdata.processor.Schema.BaseSchema
 import org.apache.spark.sql.cassandra._
-import org.apache.spark.sql.{Dataset, SparkSession}
+import org.apache.spark.sql.{Dataset, SaveMode, SparkSession}
 
 
 class CassandraDataSource(keyspace: String, cluster: Option[String] = Option.empty) extends DataSource {
@@ -12,6 +12,7 @@ class CassandraDataSource(keyspace: String, cluster: Option[String] = Option.emp
     dataSet
       .write
       .cassandraFormat(table = dataType, keyspace = keyspace, cluster = cluster.getOrElse(CassandraSourceRelation.defaultClusterName))
+      .mode(SaveMode.Overwrite)
       .save()
 
   }

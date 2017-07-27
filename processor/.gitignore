@@ -28,5 +28,6 @@ mvnw.cmd
 .mvn
 project/target
 project/project
-test
+/test
+src/test/scala/target
 null

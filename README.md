@@ -11,9 +11,71 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 <img src="https://user-images.githubusercontent.com/1279644/28627645-152a9054-722b-11e7-9edc-ad512ed02b36.png" width="200"></div> 
 
 
- ## Building
+## Running
+### Important Note:
+```
+ With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`) or casandra exits suspiciously without an error (which I also faced and couldn't figure out whats happening), you can use that sampled data to check wheter entire platform is working or not.
+```
 
- ### Building Processor Fat Jar (Optional)
+
+
+With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` must be replaced  with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I may suggest to use sampled data for local environment.
+
+```bash
+cd /path/to/yelp_data/
+./start-all.sh <path_to_your_yelp_tar_file>
+#-------------------------------------------------------------------------------------
+# # Here is the example for sample data.
+#
+# ./start-all.sh $PWD/processor/src/main/resources/sample_data.tar
+#-------------------------------------------------------------------------------------
+```
+
+### Create Cassandra Tables
+
+After make sure `cassandra` container is started properly, execute the command below;
+
+```bash
+# This will be executing the create scripts /root/create_scripts.cql given as volume on cassandra container initialization.
+docker exec -it cassandra cqlsh cassandra -f /root/create_scripts.cql --request-timeout=3600
+```
+
+### Trigger Data Processing
+
+```bash
+# This will be executing the luigi wrapper task to trigger extracting the tar file 
+# and processing the data from the extracted folder and converting json data into tabular format
+# in Cassandra 
+docker exec -it -e PYTHONPATH="/root/pipeline"  yelp_data_platform bash -c "cd /root/pipeline / && /root/pipeline/venv/bin/luigi --module app.tasks.daily_flow_task DailyFlowTask --local-scheduler"
+```
+
+If you even trigger the flow more than once, tar extractor won't be executed more than once under the favor of the idempotency feature of `Luigi`.
+
+## Executing Example Queries
+
+This is provided by introducing `Jupyter` here. Check [Jupyter Web Interface (http://localhost:8088)](http://localhost:888/) and to execute an example just click an example and then run it. By the way, it alread has the output initially as pre calculated. `Jupyter` will ask a key from you. To obtain that key, you should look at yelp data platform container logs;
+
+```bash
+docker logs -f yelp_data_platform
+```
+
+![screen shot 2017-07-27 at 03 17 58](https://user-images.githubusercontent.com/1279644/28649013-81ccf6ee-727a-11e7-8fbd-0e51edd57d4b.png)
+
+
+### Examples
+#### Positive Words by Business:
+
+This is the example of finding positive words by ignoring stop words(in English) and ordering them with level of how much they are positive.
+
+![screen shot 2017-07-27 at 02 16 35](https://user-images.githubusercontent.com/1279644/28647817-2bf0959e-7272-11e7-8d76-fe126044e4a4.png)
+
+
+
+ ## Building(OPTIONAL)
+
+ ### Building Processor Fat Jar
+
+  **Note:** There is no need to build fat jar. Because it exists in the repository as pre-built.
 
  This phase requires `sbt` installed ideally, but fat jar is included in this git repository to test easily without `sbt`. Just in case;
 
@@ -28,7 +90,7 @@ sbt clean assembly
  ```
 
 
- ### Building Docker Image (OPTIONAL)
+ ### Building Docker Image
 
  **Note:** There is no need to build docker image. Because it exists in `DockerHub` and all git commits will trigger automated docker build.
  
@@ -39,47 +101,3 @@ Because it is based on the `Jupyter-AllSpark` image, it's size is **a bit large*
  docker tag yelp-data-platform ahmetdal/yelp-data-platform
  docker push
  ```
-
-
-
- ## Running
-
- Tar file will be extracted and the json files will be converted into tabular form in Cassandra. **`<path_to_your_yelp_tar_file>` must be filled with the location of
- the yelp tar file on hosting machine.**
-
-```bash
-cd /path/to/yelp_data/
-# Create network to provide communication between cassandra and spark containers
-docker network create yelp_data_platform
-
-# Run Cassandra container.
-docker run --name cassandra -p 7000:7000 --volume ${PWD}/processor/src/main/resources/schema/create_scripts.cql:/root/create_scripts.cql --network yelp_data_platform cassandra:3.0
-
-# Run Yelp Data Platform Container. Make sure you change <path_to_your_yelp_tar_file> part 
-# with the location of the tar file in hosting machine.
-docker run --name yelp_data_platform -p 8888:8888 --volume <path_to_your_yelp_tar_file>:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
-```
-
-### Create Cassandra Tables
-
-```bash
-# This will be executing the create scripts under /root/create_scripts.cql given as volumne above
-docker exec -it cassandra cqlsh cassandra -f /root/create_scripts.cql --request-timeout=3600
-```
-
-### Trigger Data Processing
-
-```bash
-# This will be executing the luigi wrapper task to trigger extracting the tar file 
-# and processing the data from the extracted folder and converting json data into tabular format
-# in Cassandra 
-docker exec -it -e PYTHONPATH="/root/pipeline"  yelp_data_platform /root/pipeline/venv/bin/luigi --module app.tasks.daily_flow_task DailyFlowTask --local-scheduler
-```
-
-
-
-## Executing Example Queries
-
-This is provided by introducing `Jupyter` here
-
-
