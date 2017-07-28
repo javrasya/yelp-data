@@ -54,8 +54,7 @@ unmanagedSourceDirectories in Test += baseDirectory.value / "src/it/scala"
 
 unmanagedResourceDirectories in Test += baseDirectory.value / "src/it/resources"
 
-excludeFilter in Compile := "*.tar" || "*.json" || "*.txt"
-
+excludeFilter in Compile := "*.tar"
 
 //import ScalaxbKeys._
 
