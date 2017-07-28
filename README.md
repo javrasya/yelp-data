@@ -26,6 +26,8 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
 [http://yelp.ahmetdal.org](http://yelp.ahmetdal.org)
 
+**Note:** If it is down, please let me know.
+
 ## Running
 
 **Note:** This documentation is for local environment. If it is asked to run it on production like, submitting spark jobs on `Messos`, `YARN` or somethign,
