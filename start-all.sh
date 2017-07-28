@@ -38,9 +38,15 @@ if [ "$mainmenuinput" = "y" ]; then
     echo "* Tables are created in Cassandra."
     
     echo "Waiting for Yelp Data Platform to start..."
-    TOKEN = "ecd8e5af9782fed10c267d485984d0115ef7eb23571782dd"
-    echo "Token: ${TOKEN}"
-    docker run --name yelp_data_platform -p 8888:8888 --NotebookApp.password="sha1:${TOKEN}" --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
+    PASS="sha1:1dcbab3c4bd7:5df947d6d3ec1e7e889fba4bdd8aa6ccdef7dae5"
+    echo "Password: ${PASS}"
+    read  -n 1 -p "Wanna daemonize yelp data platform?(y/n):" daemonizeinput
+    _daemonize=""
+    if [ "$daemonizeinput" = "y" ]; then
+        _daemonize="-d"
+        echo ""
+    fi
+    docker $_daemonize run --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform start-notebook.sh --NotebookApp.password=$PASS
 else
     echo ""
     echo "! Deployment is cancelled."
