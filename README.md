@@ -1,13 +1,9 @@
-
-
-
-
 # YELP Data Processing Project
 
-This is the academic yelp data processing project consist of `pipeline` and `processor` parts based on SMACK concept. While processor part is 
-developed as `Spark` project runs on `Cassandra`,  pipeline part is developed with `python` `Luigi` and `GenericLuigi` which is an open source project to improve 
-luigi functionalities like task re-usability and defining luigi pipeline flow as a json. I authored the `GenericLuigi` project. There is also data serving layer
-with `Jupyter` and some prepared `Jupyter` notebooks contains interesting queries.
+This is the academic yelp data processing project consist of `pipeline`, `processor` and `data serving layer` parts based on SMACK concept. While processor part is 
+developed as `Spark` project runs on `Cassandra`,  pipeline part is developed with python `Luigi` and `GenericLuigi` which is an open source project to improve 
+luigi functionalities like task re-usability and defining luigi pipeline flow as a json. I authored the `GenericLuigi` project. Data serving layer is `Jupyter` and 
+some prepared `Jupyter` notebooks contains interesting queries.
 
  This project provide ease of processing YELP academic dataset by minimum code changes required on a schema update or new one comes up.
 
