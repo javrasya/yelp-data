@@ -16,7 +16,7 @@ object YelpDataSampling {
       .read
       .json(s"file://${new File(fullDataPath, "yelp_academic_dataset_business.json").getPath}")
       .filter($"business_id".isNotNull)
-      .limit(1000)
+      .limit(200)
 
     businessDF.createTempView("business")
 
@@ -61,12 +61,11 @@ object YelpDataSampling {
     val userDF = sparkSession.sql(
       """
         |select
-        | distinct
         | u.*,
         | rank() OVER (PARTITION BY r.review_id  ORDER BY r.review_id) as rank
         |from review r
         |inner join all_user u on u.user_id = r.user_id
-      """.stripMargin).drop("rank")
+      """.stripMargin).drop("rank").distinct()
 
     userDF.createTempView("user")
 

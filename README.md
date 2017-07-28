@@ -28,18 +28,18 @@ chmod 777 ./*.sh
 -----------------------------------------------------------------
 ### Important Note: 
 
-With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`).
+With my local environment, it wasn't enough to process real large yelp academic data. I sampled the data for my unit and integration test cases. if you face some issues like slowness(writing into cassandra running in docker container may be slow and may cause timeout for `LOCAL_QUORUM`). Bigger sample data can also be used;
 
 -----------------------------------------------------------------
 
 ### Starting Platform
 
-With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` can be given by relacing it with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I suggest to use sampled data for local environment by running `start-all.sh` without an argument.
+With pipeline execution ; it will extract tar file and then trigger `Spark` job to process the data to convert them into tabular format in `Cassandra`. In Here, **`<path_to_your_yelp_tar_file>` can be given by relacing it with the location of the yelp tar file on hosting machine as first parameter for the `start-all.sh` script.**. I suggest to use sampled data for local environment by running `start-all.sh` without an argument. There are two sample data which are `smaller` and `larger` ones. 
 
 
 ```bash
 #-----------------------------------------------------------------
-# # if you do not give the tar file, sample tar file will be used.
+# # if you do not give the tar file, bigger sample tar file will be used.
 #-----------------------------------------------------------------
 
 ./start-all.sh
@@ -54,6 +54,7 @@ or
 # # Example
 #
 # ./start-all.sh $PWD/processor/src/main/resources/sample_data.tar
+# ./start-all.sh $PWD/processor/src/main/resources/sample_data_bigger.tar
 #-----------------------------------------------------------------
 ```
 -----------------------------------------------------------------
@@ -88,9 +89,16 @@ This is provided by introducing `Jupyter` here. Check [Jupyter Web Interface (ht
 ### Examples
 #### Positive Words by Business:
 
-This is the example of finding positive words by ignoring stop words(in English) and ordering them with level of how much they are positive.
+This is the example of finding positive words by ignoring stop words(in English and German) and ordering them with level of how much they are positive.
 
-![screen shot 2017-07-27 at 02 16 35](https://user-images.githubusercontent.com/1279644/28647817-2bf0959e-7272-11e7-8d76-fe126044e4a4.png)
+![screen shot 2017-07-28 at 10 05 38](https://user-images.githubusercontent.com/1279644/28706408-d79a7eb8-737c-11e7-8dbe-d0e91c3dda9c.png)
+
+
+#### Bad Things are Happenning for Some Business:
+
+This example detects bad things happenning by checking whethere sequental low stars in their reviews. To be clear, when there are less than 3 stars in a row, (It is actually not in a row, at least 3 low stars in 5 rows), it shows them.
+
+![screen shot 2017-07-28 at 10 06 44](https://user-images.githubusercontent.com/1279644/28706336-894a594a-737c-11e7-9058-76b723edcaa3.png)
 
 
 
@@ -103,12 +111,14 @@ This is the example of finding positive words by ignoring stop words(in English)
  This phase requires `sbt` installed ideally, but fat jar is included in this git repository to test easily without `sbt`. Just in case;
 
 ```bash
+cd /path/to/yelp_data/processor/
 sbt clean assembly
 ```
 
 (by the way all test cases are supposed to be passed); If some test cases are broken, skip them;
 
  ```
+ cd /path/to/yelp_data/processor/
  sbt 'set test in assembly := {}' clean assembly
  ```
 

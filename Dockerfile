@@ -4,7 +4,7 @@ USER root
 
 RUN mkdir -p /usr/lib/yelp_data/
 COPY ./processor/target/scala-2.11/yelp-data-processor-assembly-0.0.1-SNAPSHOT.jar /usr/lib/yelp_data/
-COPY ./processor/src/main/resources/data/stopwords.txt /usr/lib/yelp_data/
+COPY ./processor/src/main/resources/data/stopwords /usr/lib/yelp_data/
 
 RUN mkdir -p /root/pipeline/
 

@@ -3,7 +3,7 @@
 cd $(dirname $0)
 
 TAR_FILE="$1"
-DEFAULT_TAR_FILE="${PWD}/processor/src/main/resources/sample_data.tar"
+DEFAULT_TAR_FILE="${PWD}/processor/src/main/resources/sample_data_bigger.tar"
 if [ -z $TAR_FILE ]; then
     echo "WARN: Tar file is not give. Sample data which is $DEFAULT_TAR_FILE will be used."
     TAR_FILE=$DEFAULT_TAR_FILE

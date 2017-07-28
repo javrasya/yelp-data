@@ -20,7 +20,7 @@
 .DS_Store
 processor
 !processor/target/scala-2.11/yelp-data-processor-assembly-0.0.1-SNAPSHOT.jar
-!processor/src/main/resources/data/stopwords.txt
+!processor/src/main/resources/data/stopwords
 
 
 pipeline

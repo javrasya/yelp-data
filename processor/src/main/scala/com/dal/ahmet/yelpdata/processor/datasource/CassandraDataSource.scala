@@ -12,7 +12,7 @@ class CassandraDataSource(keyspace: String, cluster: Option[String] = Option.emp
     dataSet
       .write
       .cassandraFormat(table = dataType, keyspace = keyspace, cluster = cluster.getOrElse(CassandraSourceRelation.defaultClusterName))
-      .mode(SaveMode.Overwrite)
+      .mode(SaveMode.Append)
       .save()
 
   }
