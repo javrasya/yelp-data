@@ -46,7 +46,7 @@ if [ "$mainmenuinput" = "y" ]; then
         _daemonize="-d"
         echo ""
     fi
-    docker $_daemonize run --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform start-notebook.sh --NotebookApp.password=$PASS
+    docker run $_daemonize --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform start-notebook.sh --NotebookApp.password=$PASS
 else
     echo ""
     echo "! Deployment is cancelled."
