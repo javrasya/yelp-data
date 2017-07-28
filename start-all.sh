@@ -39,7 +39,6 @@ if [ "$mainmenuinput" = "y" ]; then
     
     echo "Waiting for Yelp Data Platform to start..."
     PASS="sha1:1dcbab3c4bd7:5df947d6d3ec1e7e889fba4bdd8aa6ccdef7dae5"
-    echo "Password: ${PASS}"
     read  -n 1 -p "Wanna daemonize yelp data platform?(y/n):" daemonizeinput
     _daemonize=""
     if [ "$daemonizeinput" = "y" ]; then

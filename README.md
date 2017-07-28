@@ -142,5 +142,5 @@ Because it is based on the `Jupyter-AllSpark` image, it's size is **a bit large*
  ```bash
  docker build -t yelp-data-platform .
  docker tag yelp-data-platform ahmetdal/yelp-data-platform
- docker push
+ docker push ahmetdal/yelp-data-platform
  ```
