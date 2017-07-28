@@ -38,7 +38,9 @@ if [ "$mainmenuinput" = "y" ]; then
     echo "* Tables are created in Cassandra."
     
     echo "Waiting for Yelp Data Platform to start..."
-    docker run --name yelp_data_platform -p 8888:8888 --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
+    TOKEN = "ecd8e5af9782fed10c267d485984d0115ef7eb23571782dd"
+    echo "Token: ${TOKEN}"
+    docker run --name yelp_data_platform -p 8888:8888 --NotebookApp.password="sha1:${TOKEN}" --volume $TAR_FILE:/usr/lib/yelp_data/yelp_dataset.tar --network yelp_data_platform ahmetdal/yelp-data-platform
 else
     echo ""
     echo "! Deployment is cancelled."
