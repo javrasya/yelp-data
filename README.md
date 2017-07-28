@@ -28,8 +28,8 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
 ## Running
 
-*Note:* This documentation is for local environment. If it is asked to run it on production purpose like, submitting spark jobs on Messos, YARN or somethign,
-or with some other production Cassandra cluster, entire platform can be configured simply to do this.
+**Note:** This documentation is for local environment. If it is asked to run it on production like, submitting spark jobs on `Messos`, `YARN` or somethign,
+or with some other production `Cassandra` cluster, entire platform can be configured simply to do this.
 
 ```bash
 git clone https://github.com/javrasya/yelp-data.git
