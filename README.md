@@ -14,10 +14,22 @@ with `Jupyter` and some prepared `Jupyter` notebooks contains interesting querie
 
  -----------------------------------------------------------------
 
- |  ![yelp_logo](https://user-images.githubusercontent.com/1279644/28669732-02ab458c-72de-11e7-9feb-92e2d128a4d9.png) | ![spark-logo](https://user-images.githubusercontent.com/1279644/28669729-02a2157a-72de-11e7-94d6-4597202a2d45.png) | ![cassandra-logo](https://user-images.githubusercontent.com/1279644/28669731-02a7374e-72de-11e7-8ed5-d2e1c8e4557f.png) |  ![luigi-logo](https://user-images.githubusercontent.com/1279644/28669730-02a6311e-72de-11e7-9786-e891ec82d930.png) | ![docker-logo](https://user-images.githubusercontent.com/1279644/28669850-aaa53608-72de-11e7-8db7-408b16a2b174.png)|
-|:-:|-|-|-|-|
+ |  ![yelp_logo](https://user-images.githubusercontent.com/1279644/28669732-02ab458c-72de-11e7-9feb-92e2d128a4d9.png) | ![spark-logo](https://user-images.githubusercontent.com/1279644/28669729-02a2157a-72de-11e7-94d6-4597202a2d45.png) | ![cassandra-logo](https://user-images.githubusercontent.com/1279644/28669731-02a7374e-72de-11e7-8ed5-d2e1c8e4557f.png) | ![jupyter-logo](https://user-images.githubusercontent.com/1279644/28708360-acb2cb30-7384-11e7-9c7f-fe5535c29278.png) |  ![luigi-logo](https://user-images.githubusercontent.com/1279644/28669730-02a6311e-72de-11e7-9786-e891ec82d930.png) | ![docker-logo](https://user-images.githubusercontent.com/1279644/28669850-aaa53608-72de-11e7-8db7-408b16a2b174.png)|
+|:-:|-|-|-|-|-|
+
+
+## Demo
+
+ **Bigger version of sample data** is already processed by that deployed demo platform. 
+ 
+ A key is required to login. You can ask the login key to test it.
+
+[http://yelp.ahmetdal.org](http://yelp.ahmetdal.org)
 
 ## Running
+
+*Note:* This documentation is for local environment. If it is asked to run it on production purpose like, submitting spark jobs on Messos, YARN or somethign,
+or with some other production Cassandra cluster, entire platform can be configured simply to do this.
 
 ```bash
 git clone https://github.com/javrasya/yelp-data.git
